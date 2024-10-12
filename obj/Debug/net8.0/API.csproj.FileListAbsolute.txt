@@ -260,3 +260,5 @@ C:\Users\mrtbg\OneDrive\Documents\DEV\COURS\MBA\API\bin\Debug\net8.0\runtimes\wi
 C:\Users\mrtbg\OneDrive\Documents\DEV\COURS\MBA\API\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\mrtbg\OneDrive\Documents\DEV\COURS\MBA\API\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
 C:\Users\mrtbg\OneDrive\Documents\DEV\COURS\MBA\API\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\mrtbg\OneDrive\Documents\DEV\COURS\MBA\API\bin\Debug\net8.0\MySqlConnector.dll
+C:\Users\mrtbg\OneDrive\Documents\DEV\COURS\MBA\API\bin\Debug\net8.0\Pomelo.EntityFrameworkCore.MySql.dll
