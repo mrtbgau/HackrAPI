@@ -7,16 +7,20 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthenticationController(IJWTService JWTService, IConfiguration config) : ControllerBase
+    public class AuthenticationController(IJWTService JWTService, IConfiguration config, DbAPIContext dbAPIContext) : ControllerBase
     {
         private readonly IJWTService _JWTService = JWTService;
         private readonly IConfiguration _config = config;
+
+        private readonly DbAPIContext _dbAPIcontext = dbAPIContext;
 
         [HttpPost]
         [Route("login")]
@@ -33,6 +37,21 @@ namespace API.Controllers
                 return Ok(token);
             }
             return Unauthorized();
+        }
+
+        [HttpPost]
+        [Route("register")]
+        public ActionResult<User> Register(string username, string pwd){
+            var hmac = new HMACSHA512();
+            var newUser = new User{
+                UserName = username,
+                UserPWD = hmac.ComputeHash(Encoding.UTF8.GetBytes(pwd))
+            };
+
+            _dbAPIcontext.Add(newUser);
+            _dbAPIcontext.SaveChanges();
+
+            return newUser;
         }
     }
 }

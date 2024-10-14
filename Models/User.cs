@@ -7,6 +7,6 @@ namespace API.Models{
         [Required]
         public required string UserName {get; set;}
         [Required]
-        public required string UserPWD {get; set;}
+        public required byte[] UserPWD {get; set;}
     }
 }
