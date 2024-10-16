@@ -1,18 +1,32 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
+using API.DTO;
 using API.Models;
 using API.Services;
 using Microsoft.IdentityModel.Tokens;
 
 namespace API.Services{
-    public class JWTService : IJWTService
+    public class JWTService(DbAPIContext context) : IJWTService
     {
-        // public User Login(string username, string password)
-        // {
-        //     return Users.Where(u => u.UserName.ToUpper().Equals(username.ToUpper())
-        //         && u.UserPWD.Equals(password)).FirstOrDefault();
-        // }
+        private readonly DbAPIContext _context = context;
+        public User? Login(LoginDTO loginDTO)
+        {
+            var user = _context.Users
+                .FirstOrDefault(u => u.mail.Equals(loginDTO.Mail, StringComparison.CurrentCultureIgnoreCase));
+
+            if (user == null) return null;
+
+            // Vérification du mot de passe
+            var hmac = new HMACSHA512();
+            var pwdHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDTO.Password));
+            
+            if (!user.UserPWD.SequenceEqual(pwdHash))
+                return null;
+
+            return user;
+        }
         public string GenerateToken(string secret, List<Claim> claims)
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret));

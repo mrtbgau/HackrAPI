@@ -1,3 +1,4 @@
+using API.DTO;
 using API.Models;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ namespace API.Services
 {
     public interface IJWTService
     {
-        // User Login(string email, string password);
+        User? Login(LoginDTO loginDTO);
         string GenerateToken(string secret, List<Claim> claims);
     }
 }
