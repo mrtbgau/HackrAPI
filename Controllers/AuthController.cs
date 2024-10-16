@@ -22,22 +22,22 @@ namespace API.Controllers
 
         private readonly DbAPIContext _dbAPIcontext = dbAPIContext;
 
-        [HttpPost]
-        [Route("login")]
-        public IActionResult Login([FromBody] LoginModel model)
-        {
-            var user = _JWTService.Login(model.UserName, model.Password);
-            if (user != null)
-            {
-                var claims = new List<Claim>
-                {
-                    new(ClaimTypes.Email, user.UserName),
-                };
-                var token = _JWTService.GenerateToken(_config["JWT:Key"], claims);
-                return Ok(token);
-            }
-            return Unauthorized();
-        }
+        // [HttpPost]
+        // [Route("login")]
+        // public IActionResult Login([FromBody] LoginModel model)
+        // {
+        //     var user = _JWTService.Login(model.UserName, model.Password);
+        //     if (user != null)
+        //     {
+        //         var claims = new List<Claim>
+        //         {
+        //             new(ClaimTypes.Email, user.UserName),
+        //         };
+        //         var token = _JWTService.GenerateToken(_config["JWT:Key"], claims);
+        //         return Ok(token);
+        //     }
+        //     return Unauthorized();
+        // }
 
         [HttpPost]
         [Route("register")]

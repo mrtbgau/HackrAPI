@@ -8,27 +8,11 @@ using Microsoft.IdentityModel.Tokens;
 namespace API.Services{
     public class JWTService : IJWTService
     {
-        private readonly List<User> Users =
-        [
-            new User
-            {
-                UserID = 1,
-                UserName = "admin1",
-                UserPWD = "PwdAdmin1"
-            },
-            new User
-            {
-                UserID = 2,
-                UserName = "user1",
-                UserPWD = "PwdUser1"
-            }
-        ];
-
-        public User Login(string username, string password)
-        {
-            return Users.Where(u => u.UserName.ToUpper().Equals(username.ToUpper())
-                && u.UserPWD.Equals(password)).FirstOrDefault();
-        }
+        // public User Login(string username, string password)
+        // {
+        //     return Users.Where(u => u.UserName.ToUpper().Equals(username.ToUpper())
+        //         && u.UserPWD.Equals(password)).FirstOrDefault();
+        // }
         public string GenerateToken(string secret, List<Claim> claims)
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret));

@@ -9,7 +9,7 @@ namespace API.Services
 {
     public interface IJWTService
     {
-        User Login(string email, string password);
+        // User Login(string email, string password);
         string GenerateToken(string secret, List<Claim> claims);
     }
 }
