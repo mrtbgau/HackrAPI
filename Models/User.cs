@@ -11,6 +11,8 @@ namespace API.Models{
         [Required]
         public byte[] UserPWD {get; set;}
         [Required]
+        public byte[] PasswordSalt { get; set; }
+        [Required]
         public bool IsAdmin {get; set;}
     }
 }

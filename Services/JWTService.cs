@@ -14,7 +14,8 @@ namespace API.Services{
         public User? Login(LoginDTO loginDTO)
         {
             var user = _context.Users
-                .FirstOrDefault(u => u.mail.Equals(loginDTO.Mail, StringComparison.CurrentCultureIgnoreCase));
+                .FirstOrDefault(u => u.mail.ToLower() == loginDTO.Mail.ToLower());
+
 
             if (user == null) return null;
 
