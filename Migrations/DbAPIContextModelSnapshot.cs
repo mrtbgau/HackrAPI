@@ -39,7 +39,7 @@ namespace API.Migrations
 
                     b.HasKey("PermissionId");
 
-                    b.ToTable("Permission");
+                    b.ToTable("Permission", (string)null);
                 });
 
             modelBuilder.Entity("API.Models.Role", b =>
@@ -60,7 +60,7 @@ namespace API.Migrations
 
                     b.HasKey("RoleId");
 
-                    b.ToTable("Role");
+                    b.ToTable("Role", (string)null);
                 });
 
             modelBuilder.Entity("API.Models.RolePermission", b =>
@@ -75,7 +75,7 @@ namespace API.Migrations
 
                     b.HasIndex("PermissionId");
 
-                    b.ToTable("RolePermission");
+                    b.ToTable("RolePermission", (string)null);
                 });
 
             modelBuilder.Entity("API.Models.User", b =>
@@ -107,7 +107,7 @@ namespace API.Migrations
 
                     b.HasKey("UserID");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("API.Models.UserRole", b =>
@@ -122,7 +122,7 @@ namespace API.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("UserRole");
+                    b.ToTable("UserRole", (string)null);
                 });
 
             modelBuilder.Entity("API.Models.RolePermission", b =>
