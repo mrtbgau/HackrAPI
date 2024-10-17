@@ -20,10 +20,10 @@ namespace API.Services{
             if (user == null) return null;
 
             // Vérification du mot de passe
-            var hmac = new HMACSHA512();
-            var pwdHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDTO.Password));
+            using var hmac = new HMACSHA512(user.PasswordSalt);
+            var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDTO.Password));
             
-            if (!user.UserPWD.SequenceEqual(pwdHash))
+            if (!computedHash.SequenceEqual(user.UserPWD))
                 return null;
 
             return user;
