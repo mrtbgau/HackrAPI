@@ -14,5 +14,7 @@ namespace API.Models{
         public byte[] PasswordSalt { get; set; }
         [Required]
         public bool IsAdmin {get; set;}
+        [Required]
+        public virtual ICollection<UserRole> UserRoles { get; set; }
     }
 }
