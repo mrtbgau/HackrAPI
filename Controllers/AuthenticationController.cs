@@ -62,12 +62,13 @@ namespace API.Controllers
             if (_dbAPIcontext.Users.Any(u => u.UserName == registerDTO.UserName))
                 return BadRequest("Username already exists");
 
-            var hmac = new HMACSHA512();
+            using var hmac = new HMACSHA512();
             var newUser = new User
             {
                 UserName = registerDTO.UserName,
                 mail = registerDTO.Mail,
                 UserPWD = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDTO.Password)),
+                PasswordSalt = hmac.Key,
                 IsAdmin = false
             };
 
