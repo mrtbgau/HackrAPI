@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace API.Models
+namespace API.Models.Permission
 {
     public class Role
     {
