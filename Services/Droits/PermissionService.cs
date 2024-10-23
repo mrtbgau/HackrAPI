@@ -1,3 +1,4 @@
+using API.Models;
 using API.Models.Droits;
 using Microsoft.EntityFrameworkCore;
 
