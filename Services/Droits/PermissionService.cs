@@ -1,7 +1,7 @@
-using API.Models;
+using API.Models.Droits;
 using Microsoft.EntityFrameworkCore;
 
-namespace API.Services
+namespace API.Services.Droits
 {
     public class PermissionService(DbAPIContext dbAPIContext) : IPermissionService{
         private readonly DbAPIContext dbAPIContext = dbAPIContext;

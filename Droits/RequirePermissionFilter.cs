@@ -1,9 +1,9 @@
 using System.Security.Claims;
-using API.Services;
+using API.Services.Droits;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace API.Permission
+namespace API.Droits
 {
     public class RequirePermissionFilter(string permissionName, IPermissionService permissionService) : IAuthorizationFilter
     {

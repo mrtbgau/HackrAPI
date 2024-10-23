@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace API.Models;
+namespace API.Models.Droits;
 
 public class DbAPIContext(DbContextOptions<DbAPIContext> options) : DbContext(options)
 {

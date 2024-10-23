@@ -7,7 +7,7 @@ using API.Models;
 using API.Services;
 using Microsoft.IdentityModel.Tokens;
 
-namespace API.Services{
+namespace API.Services.JWT{
     public class JWTService(DbAPIContext context) : IJWTService
     {
         private readonly DbAPIContext _context = context;

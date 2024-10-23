@@ -1,6 +1,6 @@
 using API.DTO;
 using API.Models;
-using API.Services;
+using API.Services.JWT;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;

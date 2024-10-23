@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Permission
+namespace API.Droits
 {
     public class RequirePermissionAttribute : TypeFilterAttribute
     {

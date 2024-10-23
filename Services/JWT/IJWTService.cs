@@ -6,7 +6,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace API.Services
+namespace API.Services.JWT
 {
     public interface IJWTService
     {

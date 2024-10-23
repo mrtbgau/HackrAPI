@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-using API.Models.Permission;
+using API.Models.Droits;
 
 namespace API.Models{
     public class User {

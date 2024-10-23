@@ -1,6 +1,6 @@
-using API.Models;
+using API.Models.Droits;
 
-namespace API.Services
+namespace API.Services.Droits
 {
     public interface IPermissionService
     {
