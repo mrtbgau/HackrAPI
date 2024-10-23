@@ -3,8 +3,8 @@ using API.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using API;
-using API.Services;
+using API.Services.JWT;
+using API.Services.Droits;
 
 var builder = WebApplication.CreateBuilder(args);
 
