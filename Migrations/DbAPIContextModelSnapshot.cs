@@ -21,7 +21,7 @@ namespace API.Migrations
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
-            modelBuilder.Entity("API.Models.Droits.Permission", b =>
+            modelBuilder.Entity("API.Models.Permission", b =>
                 {
                     b.Property<int>("PermissionId")
                         .ValueGeneratedOnAdd()
@@ -39,10 +39,10 @@ namespace API.Migrations
 
                     b.HasKey("PermissionId");
 
-                    b.ToTable("Permission");
+                    b.ToTable("Permission", (string)null);
                 });
 
-            modelBuilder.Entity("API.Models.Droits.Role", b =>
+            modelBuilder.Entity("API.Models.Role", b =>
                 {
                     b.Property<int>("RoleId")
                         .ValueGeneratedOnAdd()
@@ -60,10 +60,10 @@ namespace API.Migrations
 
                     b.HasKey("RoleId");
 
-                    b.ToTable("Role");
+                    b.ToTable("Role", (string)null);
                 });
 
-            modelBuilder.Entity("API.Models.Droits.RolePermission", b =>
+            modelBuilder.Entity("API.Models.RolePermission", b =>
                 {
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
@@ -75,22 +75,7 @@ namespace API.Migrations
 
                     b.HasIndex("PermissionId");
 
-                    b.ToTable("RolePermissions");
-                });
-
-            modelBuilder.Entity("API.Models.Droits.UserRole", b =>
-                {
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId", "RoleId");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("UserRoles");
+                    b.ToTable("RolePermission", (string)null);
                 });
 
             modelBuilder.Entity("API.Models.User", b =>
@@ -122,18 +107,33 @@ namespace API.Migrations
 
                     b.HasKey("UserID");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
-            modelBuilder.Entity("API.Models.Droits.RolePermission", b =>
+            modelBuilder.Entity("API.Models.UserRole", b =>
                 {
-                    b.HasOne("API.Models.Droits.Permission", "Permission")
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("UserRole", (string)null);
+                });
+
+            modelBuilder.Entity("API.Models.RolePermission", b =>
+                {
+                    b.HasOne("API.Models.Permission", "Permission")
                         .WithMany()
                         .HasForeignKey("PermissionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("API.Models.Droits.Role", "Role")
+                    b.HasOne("API.Models.Role", "Role")
                         .WithMany("RolePermissions")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -144,9 +144,9 @@ namespace API.Migrations
                     b.Navigation("Role");
                 });
 
-            modelBuilder.Entity("API.Models.Droits.UserRole", b =>
+            modelBuilder.Entity("API.Models.UserRole", b =>
                 {
-                    b.HasOne("API.Models.Droits.Role", "Role")
+                    b.HasOne("API.Models.Role", "Role")
                         .WithMany("UserRoles")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -163,7 +163,7 @@ namespace API.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("API.Models.Droits.Role", b =>
+            modelBuilder.Entity("API.Models.Role", b =>
                 {
                     b.Navigation("RolePermissions");
 
