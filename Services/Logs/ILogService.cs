@@ -4,8 +4,8 @@ namespace API.Services.Logs
 {
     public interface ILogService
     {
-        Task LogActionAsync(int userId, string action, string details);
-        Task<IEnumerable<Log>> GetRecentLogsAsync(int count);
-        Task<IEnumerable<Log>> GetUserLogsAsync(int userId, int count);
+        void LogAction(int userId, string action, string details);
+        Task<IEnumerable<Log>> GetRecentLogs(int count);
+        Task<IEnumerable<Log>> GetUserLogs(int userId, int count);
     }
 }
