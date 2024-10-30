@@ -19,35 +19,6 @@ namespace API.Migrations
                 name: "FK_UserRole_Users_UserID",
                 table: "UserRole");
 
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_UserRole",
-                table: "UserRole");
-
-            migrationBuilder.DropIndex(
-                name: "IX_UserRole_UserID",
-                table: "UserRole");
-
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_RolePermission",
-                table: "RolePermission");
-
-            migrationBuilder.DropIndex(
-                name: "IX_RolePermission_RoleId1",
-                table: "RolePermission");
-
-            migrationBuilder.DropColumn(
-                name: "UserId",
-                table: "UserRole");
-
-            migrationBuilder.DropColumn(
-                name: "RoleId1",
-                table: "RolePermission");
-
-            migrationBuilder.RenameColumn(
-                name: "UserID",
-                table: "UserRole",
-                newName: "UserId");
-
             migrationBuilder.AlterColumn<int>(
                 name: "RoleId",
                 table: "RolePermission",
