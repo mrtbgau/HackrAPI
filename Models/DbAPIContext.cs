@@ -9,7 +9,6 @@ namespace API.Models
         public DbSet<User> Users { get; set; } = null!;
         public DbSet<UserRole> UserRoles {get; set;} = null!;
         public DbSet<RolePermission> RolePermissions {get; set;} = null!;
-        public DbSet<Log> logs { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

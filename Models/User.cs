@@ -17,7 +17,5 @@ namespace API.Models{
         public bool IsAdmin {get; set;}
         [Required]
         public virtual ICollection<UserRole>? UserRoles { get; set; }
-        [Required]
-        public virtual ICollection<Log>? Logs { get; set; }
     }
 }
