@@ -11,9 +11,9 @@ namespace API.Models.Droits
         public int PermissionId { get; set; }
         [Required]
         [ForeignKey("RoleId")]
-        public virtual Role Role { get; set; }
+        public virtual Role? Role { get; set; }
         [Required]
         [ForeignKey("PermissionId")]
-        public virtual Permission Permission { get; set; }
+        public virtual Permission? Permission { get; set; }
     }
 }

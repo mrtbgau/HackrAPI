@@ -13,9 +13,9 @@ namespace API.Models
         [Required]
         public int UserId { get; set; }
         [ForeignKey("UserId")]
-        public virtual User User { get; set; }
+        public virtual User? User { get; set; }
 
         [Required]
-        public string Details { get; set; }
+        public string? Details { get; set; }
     }
 }

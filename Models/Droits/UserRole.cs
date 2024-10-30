@@ -9,9 +9,9 @@ namespace API.Models.Droits
         public int RoleId { get; set; }
         [Required]
         [ForeignKey("UserId")]
-        public virtual User User { get; set; }
+        public virtual User? User { get; set; }
         [Required]
         [ForeignKey("RoleId")]
-        public virtual Role Role { get; set; }
+        public virtual Role? Role { get; set; }
     }
 }
