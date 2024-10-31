@@ -5,7 +5,7 @@ namespace API.Services.Logs
     public interface ILogService
     {
         void LogAction(int userId, string details);
-        Task<IEnumerable<Log>> GetRecentLogs(int count);
-        Task<IEnumerable<Log>> GetUserLogs(int userId, int count);
+        List<Log> GetRecentLogs(int count);
+        List<Log> GetUserLogs(int userId, int count);
     }
 }

@@ -1,6 +1,8 @@
 using API.DTO;
 using API.Models;
 using API.Services.JWT;
+using API.Services.Logs;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -16,10 +18,11 @@ namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthenticationController(IJWTService JWTService, IConfiguration config, DbAPIContext dbAPIContext) : ControllerBase
+    public class AuthenticationController(IJWTService JWTService, IConfiguration config, DbAPIContext dbAPIContext, ILogService logService) : ControllerBase
     {
         private readonly IJWTService _JWTService = JWTService;
         private readonly IConfiguration _config = config;
+        private readonly ILogService _logService = logService;
 
         private readonly DbAPIContext _dbAPIcontext = dbAPIContext;
 
@@ -38,6 +41,8 @@ namespace API.Controllers
                 new(ClaimTypes.Name, user.UserName),
                 new(ClaimTypes.Role, user.IsAdmin ? "Admin" : "User")
             };
+
+            _logService.LogAction(user.UserID, $"{user.UserName} s'est connecté");
             
             return Ok(new UserDTO
             {
@@ -81,6 +86,8 @@ namespace API.Controllers
                 new(ClaimTypes.Name, newUser.UserName),
                 new(ClaimTypes.Role, "User")
             };
+
+            _logService.LogAction(newUser.UserID, $"{newUser.UserName} s'est inscrit");
 
             return Ok(new UserDTO
             {

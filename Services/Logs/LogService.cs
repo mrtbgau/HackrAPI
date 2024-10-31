@@ -19,14 +19,14 @@ namespace API.Services.Logs
             dbAPIContext.SaveChanges();
         }
         
-        public async Task<IEnumerable<Log>> GetRecentLogs(int count)
+        public List<Log> GetRecentLogs(int count)
         {
-            return await dbAPIContext.Logs.OrderByDescending(log => log.Date).Take(count).ToListAsync();
+            return dbAPIContext.Logs.OrderByDescending(l => l.Date).Take(count).ToList();
         }
 
-        public async Task<IEnumerable<Log>> GetUserLogs(int userId, int count)
+        public List<Log> GetUserLogs(int userId, int count)
         {
-            return await dbAPIContext.Logs.OrderByDescending(log => log.Date).Take(count).Where(user => user.UserId == userId).ToListAsync();
+            return dbAPIContext.Logs.OrderByDescending(log => log.Date).Take(count).Where(user => user.UserId == userId).ToList();
         }
     }
 }
