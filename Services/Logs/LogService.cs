@@ -7,7 +7,7 @@ namespace API.Services.Logs
     {
         private readonly DbAPIContext dbAPIContext = dbAPIContext;
 
-        public void LogAction(int userId, string action, string details)
+        public void LogAction(int userId, string details)
         {
             Log newLog = new() { 
                 Date = DateTime.Now,
