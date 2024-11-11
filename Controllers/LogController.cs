@@ -12,7 +12,7 @@ namespace API.Controllers
     {
         private readonly ILogService _logService = logService;
 
-        [Route("test/logs")]
+        [Route("recent")]
         [HttpGet]
         public ActionResult<List<Log>> GetRecentLogs([FromQuery] int count)
         {
