@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using API.Models.Droits;
 
 namespace API.Models{
     public class User {
@@ -15,7 +14,5 @@ namespace API.Models{
         public byte[]? PasswordSalt { get; set; }
         [Required]
         public bool IsAdmin {get; set;}
-        [Required]
-        public virtual ICollection<UserRole>? UserRoles { get; set; }
     }
 }
