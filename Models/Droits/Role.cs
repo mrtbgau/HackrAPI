@@ -13,6 +13,6 @@ namespace API.Models.Droits
         [Required]
         public virtual ICollection<RolePermission>? RolePermissions { get; set; }
         [Required]
-        public virtual ICollection<UserRole>? UserRoles { get; set; }
+        public virtual ICollection<User>? Users { get; set; }
     }
 }
