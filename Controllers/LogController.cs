@@ -1,17 +1,13 @@
-﻿using API.Models;
-using API.Services.JWT;
+﻿using API.Droits;
+using API.Models;
 using API.Services.Logs;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-
+    [RequirePermission("ViewLogs")]
     public class LogController(ILogService logService) : Controller
     {
         private readonly ILogService _logService = logService;
