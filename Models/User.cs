@@ -1,4 +1,6 @@
+using API.Models.Droits;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace API.Models{
     public class User {
@@ -14,5 +16,10 @@ namespace API.Models{
         public byte[]? PasswordSalt { get; set; }
         [Required]
         public bool IsAdmin {get; set;}
+        [Required]
+        public int RoleId { get; set; }
+        [Required]
+        [ForeignKey("RoleId")]
+        public virtual Role? Role { get; set; }
     }
 }
