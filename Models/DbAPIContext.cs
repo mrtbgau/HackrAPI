@@ -7,27 +7,19 @@ namespace API.Models
     public class DbAPIContext(DbContextOptions<DbAPIContext> options) : DbContext(options)
     {
         public DbSet<User> Users { get; set; } = null!;
-        public DbSet<UserRole> UserRoles {get; set;} = null!;
         public DbSet<RolePermission> RolePermissions {get; set;} = null!;
         public DbSet<Log> Logs { get; set; } = null!;
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<UserRole>()
-                .HasKey(ur => new { ur.UserId, ur.RoleId });
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.Role)
+                .WithMany(r => r.Users)
+                .HasForeignKey(u => u.RoleId)
+                .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<UserRole>()
-                .HasOne(ur => ur.User)
-                .WithMany(u => u.UserRoles)
-                .HasForeignKey(ur => ur.UserId);
-
-            modelBuilder.Entity<UserRole>()
-                .HasOne(ur => ur.Role)
-                .WithMany(r => r.UserRoles)
-                .HasForeignKey(ur => ur.RoleId);
-            
-                    modelBuilder.Entity<RolePermission>()
+            modelBuilder.Entity<RolePermission>()
                 .HasKey(rp => new { rp.RoleId, rp.PermissionId });
 
             modelBuilder.Entity<RolePermission>()
