@@ -14,16 +14,16 @@ namespace API.Services.JWT{
         public User? Login(LoginDTO loginDTO)
         {
             var user = _context.Users
-                .FirstOrDefault(u => u.mail.ToLower() == loginDTO.Mail.ToLower());
+                .FirstOrDefault(u => u.mail!.ToLower() == loginDTO.Mail!.ToLower());
 
 
             if (user == null) return null;
 
             // Vérification du mot de passe
-            using var hmac = new HMACSHA512(user.PasswordSalt);
-            var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDTO.Password));
+            using var hmac = new HMACSHA512(user.PasswordSalt!);
+            var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDTO.Password!));
             
-            if (!computedHash.SequenceEqual(user.UserPWD))
+            if (!computedHash.SequenceEqual(user.UserPWD!))
                 return null;
 
             return user;
