@@ -31,30 +31,30 @@ namespace API.Controllers
         public IActionResult Login([FromBody] LoginDTO loginDTO)
         {
 
-            var user = _JWTService.Login(loginDTO);
+        var user = _JWTService.Login(loginDTO);
         
-            if (user != null)
+        if (user != null)
+        {
+            var claims = new List<Claim>
             {
-                var claims = new List<Claim>
-                {
-                    new(ClaimTypes.Email, user.mail!),
-                    new(ClaimTypes.Name, user.UserName!),
-                    new(ClaimTypes.Role, user.IsAdmin ? "Admin" : "User")
-                };
+                new(ClaimTypes.Email, user.mail),
+                new(ClaimTypes.Name, user.UserName),
+                new(ClaimTypes.Role, user.IsAdmin ? "Admin" : "User")
+            };
 
-                _logService.LogAction(user.UserID, $"{user.UserName} s'est connecté");
+            _logService.LogAction(user.UserID, $"{user.UserName} s'est connecté");
             
-                return Ok(new UserDTO
-                {
-                    UserID = user.UserID,
-                    UserName = user.UserName!,
-                    Mail = user.mail!,
-                    IsAdmin = user.IsAdmin,
-                    Token = _JWTService.GenerateToken(_config["JWT:Key"]!, claims)
-                });
-            }
+            return Ok(new UserDTO
+            {
+                UserID = user.UserID,
+                UserName = user.UserName,
+                Mail = user.mail,
+                IsAdmin = user.IsAdmin,
+                Token = _JWTService.GenerateToken(_config["JWT:Key"], claims)
+            });
+        }
         
-            return Unauthorized();
+        return Unauthorized();
         }
 
         [HttpPost]
@@ -63,6 +63,7 @@ namespace API.Controllers
             if (_dbAPIcontext.Users.Any(u => u.mail == registerDTO.Mail))
                 return BadRequest("Email already exists");
 
+            // Vérifier si le username existe déjà
             if (_dbAPIcontext.Users.Any(u => u.UserName == registerDTO.UserName))
                 return BadRequest("Username already exists");
 
@@ -71,7 +72,7 @@ namespace API.Controllers
             {
                 UserName = registerDTO.UserName,
                 mail = registerDTO.Mail,
-                UserPWD = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDTO.Password!)),
+                UserPWD = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDTO.Password)),
                 PasswordSalt = hmac.Key,
                 IsAdmin = false
             };
@@ -81,8 +82,8 @@ namespace API.Controllers
 
             var claims = new List<Claim>
             {
-                new(ClaimTypes.Email, newUser.mail!),
-                new(ClaimTypes.Name, newUser.UserName!),
+                new(ClaimTypes.Email, newUser.mail),
+                new(ClaimTypes.Name, newUser.UserName),
                 new(ClaimTypes.Role, "User")
             };
 
@@ -91,10 +92,10 @@ namespace API.Controllers
             return Ok(new UserDTO
             {
                 UserID = newUser.UserID,
-                UserName = newUser.UserName!,
-                Mail = newUser.mail!,
+                UserName = newUser.UserName,
+                Mail = newUser.mail,
                 IsAdmin = newUser.IsAdmin,
-                Token = _JWTService.GenerateToken(_config["JWT:Key"]!, claims)
+                Token = _JWTService.GenerateToken(_config["JWT:Key"], claims)
             });
         }
     }
