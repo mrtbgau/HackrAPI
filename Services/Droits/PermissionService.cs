@@ -7,31 +7,46 @@ namespace API.Services.Droits
     public class PermissionService(DbAPIContext dbAPIContext) : IPermissionService{
         private readonly DbAPIContext dbAPIContext = dbAPIContext;
 
-        public bool UserHasPermission(int userId, string? permissionName)
+        public bool UserHasPermission(int userId, string permissionName)
         {
             return GetUserRoleByUserId(userId)
-                .SelectMany(r => r.RolePermissions)
-                .Any(rp => rp.Permission.Name == permissionName);
+                .SelectMany(r => r!.RolePermissions!.Select(rp => rp.Permission))
+                .Any(p => p!.Name == permissionName);
         }
 
-        public IEnumerable<Permission> GetUserPermissions(int userId)
+        public IEnumerable<Permission?> GetUserPermissions(int userId)
         {
             return GetUserRoleByUserId(userId)
-                .SelectMany(r => r.RolePermissions)
-                .Select(r => r.Permission);
+                .SelectMany(r => r!.RolePermissions!.Select(rp => rp.Permission))
+                .Distinct();
         }
 
         public async Task<bool> AssignRoleToUser(int userId, int roleId)
         {
-            User currentUser = dbAPIContext.Users.Where(u => u.UserID == userId).FirstOrDefault();
+            var user = await dbAPIContext.Users.FirstOrDefaultAsync(u => u.UserID == userId);
+            var role = await dbAPIContext.Roles.FirstOrDefaultAsync(r => r.RoleId == roleId);
 
-            if (currentUser.RoleId != roleId)
-            {
-                await dbAPIContext.SaveChangesAsync();
-                return true;
-            }
+            if (user == null || role == null)
+                return false;
 
-            return false;
+            if (user.Role != null && user.Role.RoleId == roleId)
+                return false;
+
+            user.Role = role;
+            await dbAPIContext.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> RemoveRoleFromUser(int userId, int roleId)
+        {
+            var user = await dbAPIContext.Users.FirstOrDefaultAsync(u => u.UserID == userId);
+
+            if (user == null || user.Role == null || user.Role.RoleId != roleId)
+                return false;
+
+            user.Role = null;
+            await dbAPIContext.SaveChangesAsync();
+            return true;
         }
 
         public async Task<bool> AddPermissionToRole(int roleId, int permissionId)
@@ -57,7 +72,7 @@ namespace API.Services.Droits
             return true;
         }
 
-        private IQueryable<Role> GetUserRoleByUserId(int userId)
+        private IQueryable<Role?> GetUserRoleByUserId(int userId)
         {
             return dbAPIContext.Users
                 .Where(u => u.UserID == userId)
