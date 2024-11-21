@@ -26,19 +26,19 @@ namespace API.Services.Droits
                 .ToList();
         }
 
-        public bool AssignRoleToUser(int userId, int roleId)
+        public bool AssignRoleToUser(int userId, string role)
         {
             var user = dbAPIContext.Users.FirstOrDefault(u => u.UserID == userId);
-            var role = dbAPIContext.Roles.FirstOrDefault(r => r.RoleId == roleId);
+            var roleName = dbAPIContext.Roles.FirstOrDefault(r => r.Name == role);
 
             if (user == null || role == null)
                 return false;
 
-            if (user.Role != null && user.Role.RoleId == roleId)
+            if (user.Role != null && user.Role.Name == roleName?.ToString())
                 return false;
 
-            user.Role = role;
-            user.RoleId = roleId;
+            user.Role = roleName;
+            user.RoleId = roleName!.RoleId;
 
             try
             {
@@ -51,11 +51,11 @@ namespace API.Services.Droits
             }
         }
 
-        public bool RemoveRoleFromUser(int userId, int roleId)
+        public bool RemoveRoleFromUser(int userId, string role)
         {
             var user = dbAPIContext.Users.Find(userId);
 
-            if (user == null || user.Role?.RoleId != roleId)
+            if (user == null || user.Role?.Name != role)
                 return false;
 
             user.Role = null;
@@ -71,24 +71,24 @@ namespace API.Services.Droits
             }
         }
 
-        public bool AddPermissionToRole(int roleId, int permissionId)
+        public bool AddPermissionToRole(string role, string permission)
         {
-            var role = dbAPIContext.Roles.Find(roleId);
-            var permission = dbAPIContext.Permissions.Find(permissionId);
+            var roleName = dbAPIContext.Roles.FirstOrDefault(r => r.Name == role);
+            var permissionName = dbAPIContext.Permissions.First(r => r.Name == permission);
 
             if (role == null || permission == null)
                 return false;
 
             var existingRolePermission = dbAPIContext.RolePermissions
-                .FirstOrDefaultAsync(rp => rp.RoleId == roleId && rp.PermissionId == permissionId);
+                .FirstOrDefaultAsync(rp => rp.RoleId == roleName!.RoleId && rp.PermissionId == permissionName.PermissionId);
 
             if (existingRolePermission != null)
                 return false;
 
             var rolePermission = new RolePermission
             {
-                RoleId = roleId,
-                PermissionId = permissionId
+                RoleId = roleName!.RoleId,
+                PermissionId = permissionName.PermissionId
             };
 
             dbAPIContext.RolePermissions.Add(rolePermission);
@@ -104,10 +104,13 @@ namespace API.Services.Droits
             }
         }
 
-        public bool RemovePermissionFromRole(int roleId, int permissionId)
+        public bool RemovePermissionFromRole(string role, string permission)
         {
+            var roleName = dbAPIContext.Roles.FirstOrDefault(r => r.Name == role);
+            var permissionName = dbAPIContext.Permissions.First(r => r.Name == permission);
+
             var rolePermission = dbAPIContext.RolePermissions
-                .FirstOrDefault(rp => rp.RoleId == roleId && rp.PermissionId == permissionId);
+                .FirstOrDefault(rp => rp.RoleId == roleName.RoleId && rp.PermissionId == permissionName.PermissionId);
 
             if (rolePermission == null)
                 return false;

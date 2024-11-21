@@ -6,9 +6,9 @@ namespace API.Services.Droits
     {
         bool UserHasPermission(int userId, string permissionName);
         IEnumerable<Permission?> GetUserPermissions(int userId);
-        bool AssignRoleToUser(int userId, int roleId);
-        bool RemoveRoleFromUser(int userId, int roleId);
-        bool AddPermissionToRole(int roleId, int permissionId);
-        bool RemovePermissionFromRole(int roleId, int permissionId);
+        bool AssignRoleToUser(int userId, string role);
+        bool RemoveRoleFromUser(int userId, string role);
+        bool AddPermissionToRole(string role, string permission);
+        bool RemovePermissionFromRole(string role, string permission);
     }
 }
