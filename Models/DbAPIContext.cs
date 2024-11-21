@@ -33,6 +33,9 @@ namespace API.Models
                 .HasOne(rp => rp.Permission)
                 .WithMany()
                 .HasForeignKey(rp => rp.PermissionId);
+
+            modelBuilder.Entity<Role>().ToTable("role");
+            modelBuilder.Entity<Permission>().ToTable("permission");
         }
     }
 }

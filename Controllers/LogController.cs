@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     [RequirePermission("ViewLogs")]
     public class LogController(ILogService logService) : Controller
     {

@@ -7,29 +7,29 @@ namespace API.Services.Droits
     public class PermissionService(DbAPIContext dbAPIContext) : IPermissionService{
         private readonly DbAPIContext dbAPIContext = dbAPIContext;
 
-        public async Task<bool> UserHasPermission(int userId, string permissionName)
+        public bool UserHasPermission(int userId, string permissionName)
         {
-            return await dbAPIContext.Users
+            return dbAPIContext.Users
                 .Where(u => u.UserID == userId)
                 .SelectMany(u => u.Role!.RolePermissions!)
                 .Select(rp => rp.Permission)
-                .AnyAsync(p => p!.Name == permissionName);
+                .Any(p => p!.Name == permissionName);
         }
 
-        public async Task<IEnumerable<Permission?>> GetUserPermissions(int userId)
+        public IEnumerable<Permission?> GetUserPermissions(int userId)
         {
-            return await dbAPIContext.Users
+            return dbAPIContext.Users
                 .Where(u => u.UserID == userId)
                 .SelectMany(u => u.Role!.RolePermissions!)
                 .Select(rp => rp.Permission!)
                 .Distinct()
-                .ToListAsync();
+                .ToList();
         }
 
-        public async Task<bool> AssignRoleToUser(int userId, int roleId)
+        public bool AssignRoleToUser(int userId, int roleId)
         {
-            var user = await dbAPIContext.Users.FirstOrDefaultAsync(u => u.UserID == userId);
-            var role = await dbAPIContext.Roles.FirstOrDefaultAsync(r => r.RoleId == roleId);
+            var user = dbAPIContext.Users.FirstOrDefault(u => u.UserID == userId);
+            var role = dbAPIContext.Roles.FirstOrDefault(r => r.RoleId == roleId);
 
             if (user == null || role == null)
                 return false;
@@ -42,7 +42,7 @@ namespace API.Services.Droits
 
             try
             {
-                await dbAPIContext.SaveChangesAsync();
+                dbAPIContext.SaveChangesAsync();
                 return true;
             }
             catch (DbUpdateException)
@@ -51,9 +51,9 @@ namespace API.Services.Droits
             }
         }
 
-        public async Task<bool> RemoveRoleFromUser(int userId, int roleId)
+        public bool RemoveRoleFromUser(int userId, int roleId)
         {
-            var user = await dbAPIContext.Users.FindAsync(userId);
+            var user = dbAPIContext.Users.Find(userId);
 
             if (user == null || user.Role?.RoleId != roleId)
                 return false;
@@ -62,7 +62,7 @@ namespace API.Services.Droits
 
             try
             {
-                await dbAPIContext.SaveChangesAsync();
+                dbAPIContext.SaveChangesAsync();
                 return true;
             }
             catch (DbUpdateException)
@@ -71,15 +71,15 @@ namespace API.Services.Droits
             }
         }
 
-        public async Task<bool> AddPermissionToRole(int roleId, int permissionId)
+        public bool AddPermissionToRole(int roleId, int permissionId)
         {
-            var role = await dbAPIContext.Roles.FindAsync(roleId);
-            var permission = await dbAPIContext.Permissions.FindAsync(permissionId);
+            var role = dbAPIContext.Roles.Find(roleId);
+            var permission = dbAPIContext.Permissions.Find(permissionId);
 
             if (role == null || permission == null)
                 return false;
 
-            var existingRolePermission = await dbAPIContext.RolePermissions
+            var existingRolePermission = dbAPIContext.RolePermissions
                 .FirstOrDefaultAsync(rp => rp.RoleId == roleId && rp.PermissionId == permissionId);
 
             if (existingRolePermission != null)
@@ -95,7 +95,7 @@ namespace API.Services.Droits
 
             try
             {
-                await dbAPIContext.SaveChangesAsync();
+                dbAPIContext.SaveChangesAsync();
                 return true;
             }
             catch (DbUpdateException)
@@ -104,10 +104,10 @@ namespace API.Services.Droits
             }
         }
 
-        public async Task<bool> RemovePermissionFromRole(int roleId, int permissionId)
+        public bool RemovePermissionFromRole(int roleId, int permissionId)
         {
-            var rolePermission = await dbAPIContext.RolePermissions
-                .FirstOrDefaultAsync(rp => rp.RoleId == roleId && rp.PermissionId == permissionId);
+            var rolePermission = dbAPIContext.RolePermissions
+                .FirstOrDefault(rp => rp.RoleId == roleId && rp.PermissionId == permissionId);
 
             if (rolePermission == null)
                 return false;
@@ -116,7 +116,7 @@ namespace API.Services.Droits
 
             try
             {
-                await dbAPIContext.SaveChangesAsync();
+                dbAPIContext.SaveChangesAsync();
                 return true;
             }
             catch (DbUpdateException)

@@ -19,7 +19,9 @@ namespace API.Droits
                 return;
             }
 
-            if (!_permissionService.UserHasPermission(userIdInt, _permissionName))
+            bool hasPermission = _permissionService.UserHasPermission(userIdInt, _permissionName);
+
+            if (!hasPermission)
             {
                 context.Result = new ForbidResult();
                 return;
