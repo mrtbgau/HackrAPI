@@ -8,7 +8,7 @@ namespace API.Services.Droits
         IEnumerable<Permission?> GetUserPermissions(int userId);
         bool AssignRoleToUser(int userId, string role);
         bool RemoveRoleFromUser(int userId, string role);
-        bool AddPermissionToRole(string role, string permission);
-        bool RemovePermissionFromRole(string role, string permission);
+        bool AddPermissionToRole(int roleId, string permission);
+        bool RemovePermissionFromRole(int roleId, string permission);
     }
 }

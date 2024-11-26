@@ -100,8 +100,71 @@
   },
   {
     "ContainingType": "API.Controllers.PermissionController",
+    "Method": "AddPermissionToRole",
+    "RelativePath": "api/Permission/roles/{id}/add-permission",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "role",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.PermissionController",
+    "Method": "RemovePermissionFromRole",
+    "RelativePath": "api/Permission/roles/{id}/remove-permission",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "role",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.PermissionController",
+    "Method": "AssignRoleToUser",
+    "RelativePath": "api/Permission/users/{id}/assign-role",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "role",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.PermissionController",
     "Method": "GetUserPermissions",
-    "RelativePath": "api/Permission/users/{id}/permisssions",
+    "RelativePath": "api/Permission/users/{id}/permissions",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -123,5 +186,26 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "API.Controllers.PermissionController",
+    "Method": "RemoveRoleFromUser",
+    "RelativePath": "api/Permission/users/{id}/remove-role",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "role",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

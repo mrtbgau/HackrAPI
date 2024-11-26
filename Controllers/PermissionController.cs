@@ -21,11 +21,32 @@ namespace API.Controllers
             return Ok(_permissionService.GetUserPermissions(id));
         }
 
-        [Route("assign-role")]
+        [Route("users/{id}/assign-role")]
         [HttpPost]
-        public ActionResult AssignRoleToUser([FromQuery] int userId, [FromQuery] string role)
+        public ActionResult AssignRoleToUser(int id, [FromQuery] string role)
         {
-            return Ok(_permissionService.AssignRoleToUser(userId, role));
+            return Ok(_permissionService.AssignRoleToUser(id, role));
+        }
+
+        [Route("users/{id}/remove-role")]
+        [HttpPost]
+        public ActionResult RemoveRoleFromUser(int id, [FromQuery] string role)
+        {
+            return Ok(_permissionService.RemoveRoleFromUser(id, role));
+        }
+
+        [Route("roles/{id}/add-permission")]
+        [HttpPost]
+        public ActionResult AddPermissionToRole(int id, [FromQuery] string role)
+        {
+            return Ok(_permissionService.AddPermissionToRole(id, role));
+        }
+
+        [Route("roles/{id}/remove-permission")]
+        [HttpPost]
+        public ActionResult RemovePermissionFromRole(int id, [FromQuery] string role)
+        {
+            return Ok(_permissionService.RemovePermissionFromRole(id, role));
         }
     }
 }

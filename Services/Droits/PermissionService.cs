@@ -71,23 +71,23 @@ namespace API.Services.Droits
             }
         }
 
-        public bool AddPermissionToRole(string role, string permission)
+        public bool AddPermissionToRole(int roleId, string permission)
         {
-            var roleName = dbAPIContext.Roles.FirstOrDefault(r => r.Name == role);
-            var permissionName = dbAPIContext.Permissions.First(r => r.Name == permission);
+            var role = dbAPIContext.Roles.FirstOrDefault(r => r.RoleId == roleId);
+            Permission permissionName = dbAPIContext.Permissions.First(r => r.Name == permission);
 
             if (role == null || permission == null)
                 return false;
 
             var existingRolePermission = dbAPIContext.RolePermissions
-                .FirstOrDefaultAsync(rp => rp.RoleId == roleName!.RoleId && rp.PermissionId == permissionName.PermissionId);
+                .FirstOrDefaultAsync(rp => rp.RoleId == roleId && rp.PermissionId == permissionName.PermissionId);
 
             if (existingRolePermission != null)
                 return false;
 
-            var rolePermission = new RolePermission
+            RolePermission rolePermission = new()
             {
-                RoleId = roleName!.RoleId,
+                RoleId = roleId,
                 PermissionId = permissionName.PermissionId
             };
 
@@ -104,13 +104,12 @@ namespace API.Services.Droits
             }
         }
 
-        public bool RemovePermissionFromRole(string role, string permission)
+        public bool RemovePermissionFromRole(int roleId, string permission)
         {
-            var roleName = dbAPIContext.Roles.FirstOrDefault(r => r.Name == role);
-            var permissionName = dbAPIContext.Permissions.First(r => r.Name == permission);
+            Permission permissionName = dbAPIContext.Permissions.First(r => r.Name == permission);
 
             var rolePermission = dbAPIContext.RolePermissions
-                .FirstOrDefault(rp => rp.RoleId == roleName.RoleId && rp.PermissionId == permissionName.PermissionId);
+                .FirstOrDefault(rp => rp.RoleId == roleId && rp.PermissionId == permissionName.PermissionId);
 
             if (rolePermission == null)
                 return false;
