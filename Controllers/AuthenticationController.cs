@@ -37,6 +37,7 @@ namespace API.Controllers
             {
                 var claims = new List<Claim>
                 {
+                    new(ClaimTypes.NameIdentifier, user.UserID.ToString()),
                     new(ClaimTypes.Email, user.mail!),
                     new(ClaimTypes.Name, user.UserName!),
                     new(ClaimTypes.Role, user.IsAdmin ? "Admin" : "User")
@@ -81,6 +82,7 @@ namespace API.Controllers
 
             var claims = new List<Claim>
             {
+                new(ClaimTypes.NameIdentifier, newUser.UserID.ToString()),
                 new(ClaimTypes.Email, newUser.mail!),
                 new(ClaimTypes.Name, newUser.UserName!),
                 new(ClaimTypes.Role, "User")

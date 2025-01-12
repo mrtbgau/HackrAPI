@@ -32,17 +32,17 @@ namespace API.Services.Droits
             var roleName = dbAPIContext.Roles.FirstOrDefault(r => r.Name == role);
 
             if (user == null || role == null)
-                return false;
+                throw new ArgumentException("User not found"); ;
 
             if (user.Role != null && user.Role.Name == roleName?.ToString())
-                return false;
+                throw new ArgumentException("Role not found");
 
             user.Role = roleName;
             user.RoleId = roleName!.RoleId;
 
             try
             {
-                dbAPIContext.SaveChangesAsync();
+                dbAPIContext.SaveChanges();
                 return true;
             }
             catch (DbUpdateException)
@@ -62,7 +62,7 @@ namespace API.Services.Droits
 
             try
             {
-                dbAPIContext.SaveChangesAsync();
+                dbAPIContext.SaveChanges();
                 return true;
             }
             catch (DbUpdateException)
@@ -95,7 +95,7 @@ namespace API.Services.Droits
 
             try
             {
-                dbAPIContext.SaveChangesAsync();
+                dbAPIContext.SaveChanges();
                 return true;
             }
             catch (DbUpdateException)
@@ -118,7 +118,7 @@ namespace API.Services.Droits
 
             try
             {
-                dbAPIContext.SaveChangesAsync();
+                dbAPIContext.SaveChanges();
                 return true;
             }
             catch (DbUpdateException)
