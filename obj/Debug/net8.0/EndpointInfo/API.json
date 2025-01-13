@@ -189,6 +189,27 @@
         }
       }
     },
+    "/api/Mail/verify": {
+      "get": {
+        "tags": [
+          "Mail"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/Permission/users/{id}/permissions": {
       "get": {
         "tags": [

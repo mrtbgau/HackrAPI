@@ -3,10 +3,10 @@ using System.Text.Json;
 
 namespace API.Services.Mail
 {
-    public class MailService(HttpClient httpClient, IConfiguration configuration)
+    public class MailService(HttpClient httpClient, IConfiguration configuration) : IMailService
     {
         private readonly HttpClient _httpClient = httpClient;
-        private readonly string _apiKey = configuration["Hunter:Key"];
+        private readonly string? _apiKey = configuration["Hunter:Key"];
         public async Task<bool> VerifyEmailExistenceAsync(string email)
         {
             var url = $"https://api.hunter.io/v2/email-verifier?email={email}&api_key={_apiKey}";
@@ -27,7 +27,7 @@ namespace API.Services.Mail
                                 .GetString();
 
             return result == "deliverable";
-        } 
+        }
     }
 
 }

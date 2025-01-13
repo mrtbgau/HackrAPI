@@ -99,6 +99,22 @@
     ]
   },
   {
+    "ContainingType": "API.Controllers.MailController",
+    "Method": "VerifyEmail",
+    "RelativePath": "api/Mail/verify",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "API.Controllers.PermissionController",
     "Method": "AddPermissionToRole",
     "RelativePath": "api/Permission/roles/{id}/add-permission",

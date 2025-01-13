@@ -6,6 +6,7 @@ using System.Text;
 using API.Services.JWT;
 using API.Services.Droits;
 using API.Services.Logs;
+using API.Services.Mail;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IPermissionService, PermissionService>();
 builder.Services.AddScoped<ILogService, LogService>();
+builder.Services.AddHttpClient<IMailService, MailService>();
+
 
 builder.Services.AddAuthentication(options => {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
