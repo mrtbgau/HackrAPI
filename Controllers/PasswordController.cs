@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class PasswordController(IPasswordService passwordService) : Controller
     {
         private readonly IPasswordService _passwordService = passwordService;

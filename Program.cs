@@ -8,6 +8,7 @@ using API.Services.Droits;
 using API.Services.Logs;
 using API.Services.Mail;
 using API.Services.Password;
+using API.Services.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,8 @@ builder.Services.AddScoped<IPermissionService, PermissionService>();
 builder.Services.AddScoped<ILogService, LogService>();
 builder.Services.AddHttpClient<IMailService, MailService>();
 builder.Services.AddScoped<IPasswordService, PasswordService>();
+builder.Services.AddScoped<IIdentityService, IdentityService>();
+
 
 
 builder.Services.AddAuthentication(options => {
