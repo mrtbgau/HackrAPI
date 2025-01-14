@@ -42,6 +42,16 @@
     ]
   },
   {
+    "ContainingType": "API.Controllers.IdentityController",
+    "Method": "GenerateIdentity",
+    "RelativePath": "api/Identity/generate-identity",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "API.Controllers.LogController",
     "Method": "GetRecentLogs",
     "RelativePath": "api/Log/recent",
@@ -112,6 +122,32 @@
         "IsRequired": false
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.PasswordController",
+    "Method": "CheckPassword",
+    "RelativePath": "api/Password/check-password",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "password",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.PasswordController",
+    "Method": "GeneratePassword",
+    "RelativePath": "api/Password/generate-password",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -222,32 +258,6 @@
         "IsRequired": false
       }
     ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "API.Controllers.PasswordController",
-    "Method": "CheckPassword",
-    "RelativePath": "check-password",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "password",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "API.Controllers.PasswordController",
-    "Method": "GeneratePassword",
-    "RelativePath": "generate-password",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
     "ReturnTypes": []
   }
 ]

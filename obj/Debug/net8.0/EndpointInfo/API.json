@@ -84,6 +84,18 @@
         }
       }
     },
+    "/api/Identity/generate-identity": {
+      "get": {
+        "tags": [
+          "Identity"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/Log/recent": {
       "get": {
         "tags": [
@@ -210,7 +222,7 @@
         }
       }
     },
-    "/generate-password": {
+    "/api/Password/generate-password": {
       "get": {
         "tags": [
           "Password"
@@ -222,7 +234,7 @@
         }
       }
     },
-    "/check-password": {
+    "/api/Password/check-password": {
       "get": {
         "tags": [
           "Password"

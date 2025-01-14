@@ -263,3 +263,4 @@ C:\Users\mrtbg\OneDrive\Documents\DEV\COURS\MBA\API\bin\Debug\net8.0\MySqlConnec
 C:\Users\mrtbg\OneDrive\Documents\DEV\COURS\MBA\API\bin\Debug\net8.0\Pomelo.EntityFrameworkCore.MySql.dll
 C:\Users\mrtbg\OneDrive\Documents\DEV\COURS\MBA\API\bin\Debug\net8.0\global.json
 C:\Users\mrtbg\OneDrive\Documents\DEV\COURS\MBA\API\bin\Debug\net8.0\System.Formats.Asn1.dll
+C:\Users\mrtbg\OneDrive\Documents\DEV\COURS\MBA\API\bin\Debug\net8.0\Bogus.dll
