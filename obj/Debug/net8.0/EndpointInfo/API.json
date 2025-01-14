@@ -189,7 +189,7 @@
         }
       }
     },
-    "/api/Mail/verify": {
+    "/api/Mail/verify-mail": {
       "get": {
         "tags": [
           "Mail"
@@ -197,6 +197,39 @@
         "parameters": [
           {
             "name": "email",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/generate-password": {
+      "get": {
+        "tags": [
+          "Password"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/check-password": {
+      "get": {
+        "tags": [
+          "Password"
+        ],
+        "parameters": [
+          {
+            "name": "password",
             "in": "query",
             "schema": {
               "type": "string"

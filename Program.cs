@@ -7,6 +7,7 @@ using API.Services.JWT;
 using API.Services.Droits;
 using API.Services.Logs;
 using API.Services.Mail;
+using API.Services.Password;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IPermissionService, PermissionService>();
 builder.Services.AddScoped<ILogService, LogService>();
 builder.Services.AddHttpClient<IMailService, MailService>();
+builder.Services.AddScoped<IPasswordService, PasswordService>();
 
 
 builder.Services.AddAuthentication(options => {

@@ -101,7 +101,7 @@
   {
     "ContainingType": "API.Controllers.MailController",
     "Method": "VerifyEmail",
-    "RelativePath": "api/Mail/verify",
+    "RelativePath": "api/Mail/verify-mail",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -222,6 +222,32 @@
         "IsRequired": false
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.PasswordController",
+    "Method": "CheckPassword",
+    "RelativePath": "check-password",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "password",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.PasswordController",
+    "Method": "GeneratePassword",
+    "RelativePath": "generate-password",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   }
 ]

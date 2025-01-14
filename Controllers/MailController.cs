@@ -10,7 +10,7 @@ namespace API.Controllers
     {
         private readonly ILogService _logService = logService;
         private readonly IMailService _mailService = mailService;
-        [HttpGet("verify")]
+        [HttpGet("verify-mail")]
         public async Task<IActionResult> VerifyEmail(string email)
         {
             if (string.IsNullOrEmpty(email))
