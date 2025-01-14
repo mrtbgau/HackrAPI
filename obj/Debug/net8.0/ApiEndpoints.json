@@ -110,6 +110,27 @@
   },
   {
     "ContainingType": "API.Controllers.MailController",
+    "Method": "SpamMail",
+    "RelativePath": "api/Mail/spam_mail",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "count",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.MailController",
     "Method": "VerifyEmail",
     "RelativePath": "api/Mail/verify-mail",
     "HttpMethod": "GET",

@@ -222,6 +222,35 @@
         }
       }
     },
+    "/api/Mail/spam_mail": {
+      "post": {
+        "tags": [
+          "Mail"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/Password/generate-password": {
       "get": {
         "tags": [
