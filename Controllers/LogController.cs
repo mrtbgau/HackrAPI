@@ -7,7 +7,6 @@ namespace API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [RequirePermission("ViewLogs")]
     public class LogController(ILogService logService) : Controller
     {
         private readonly ILogService _logService = logService;
