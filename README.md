@@ -30,6 +30,6 @@ faker ruby : https://github.com/faker-ruby/faker
   - Organiser vos routes en collection et dans un projet
   - Automatisant la génération du bearer et sa transmission dans toutes les requêtes. (Bearer = JWT)
 ## Installion
-"""
+```
 git clone https://github.com/mrtbgau/HackrAPI.git
-"""
+```
