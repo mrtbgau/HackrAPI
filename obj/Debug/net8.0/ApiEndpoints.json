@@ -42,6 +42,48 @@
     ]
   },
   {
+    "ContainingType": "API.Controllers.DDOSController",
+    "Method": "Index",
+    "RelativePath": "api/DDOS/ddos",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ip",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "port",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.IdentityController",
+    "Method": "CrawlInformation",
+    "RelativePath": "api/Identity/crawl",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "firstName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "lastName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "API.Controllers.IdentityController",
     "Method": "GenerateIdentity",
     "RelativePath": "api/Identity/generate-identity",
