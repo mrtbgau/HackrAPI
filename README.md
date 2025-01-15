@@ -1,21 +1,21 @@
 # HackrAPI
 ## Fonctionnalités
--Outil de vérification d'existence d'adresse mail
--Spammer de mail (contenu + nombre d'envoi)
--service de phising (création d'une page web de phishing sur mesure - backé sur de l'IA !)
+- Outil de vérification d'existence d'adresse mail
+- Spammer de mail (contenu + nombre d'envoi)
+- service de phising (création d'une page web de phishing sur mesure - backé sur de l'IA !)
 Est-ce que le MDP est sur la liste des plus courants (https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10k-most-common.txt)
 récupérer tous domaines & sous-domaines associés à un Nom De Domaine (Adrien, on appelle ça aussi un "NDD" dans le milieu 😁)
--DDoS
--changement d'image random (trouver une API qui fait ça ^^)
--Génération d'identité fictive => utilisez la lirairie Faker !
+- DDoS
+- changement d'image random (trouver une API qui fait ça ^^)
+- Génération d'identité fictive => utilisez la lirairie Faker !
 faker JS : https://fakerjs.dev/
 faker PHP : https://fakerphp.org/
 faker python : https://faker.readthedocs.io/en/master/
 faker .NET : https://www.nuget.org/packages/Faker.Net/
 faker JAVA : https://javadoc.io/doc/com.github.javafaker/javafaker/latest/com/github/javafaker/Faker.html
 faker ruby : https://github.com/faker-ruby/faker
--Crawler d'information sur une personne (à partir d'un nom / prénom)
--Générateur de mot de passe sécurisé
+- Crawler d'information sur une personne (à partir d'un nom / prénom)
+- Générateur de mot de passe sécurisé
 ## Obligations
 - Contrôller l'accès à votre API grâce à un système de connexion basé sur JWT
 - Mettre en place un système de droits, gérable par des administrateurs, qui permet de définir quelles fonctionnalités peuvent être utilisées par quel utilisateur
