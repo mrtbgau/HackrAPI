@@ -33,3 +33,4 @@ faker ruby : https://github.com/faker-ruby/faker
 ```
 git clone https://github.com/mrtbgau/HackrAPI.git
 ```
+Ouvrir et Lancer le projet depuis Visual Studio
