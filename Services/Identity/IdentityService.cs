@@ -27,7 +27,7 @@ namespace API.Services.Identity
         public async Task<object> SearchPersonAsync(string firstName, string lastName)
         {
             var query = $"{firstName} {lastName}";
-            var url = $"https://serpapi.com/search.json?q={query}&fr=en&api_key={_apiKey}";
+            var url = $"https://serpapi.com/search.json?q={query}&hl=fr&api_key={_apiKey}";
 
             var response = await _httpClient.GetAsync(url);
             if (!response.IsSuccessStatusCode)
