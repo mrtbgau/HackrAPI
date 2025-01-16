@@ -29,3 +29,6 @@ git clone https://github.com/mrtbgau/HackrAPI.git
 ```
 - Importer le fichier hackrapi.sql dans phpMyAdmin
 - Ouvrir et Lancer le projet depuis Visual Studio
+- Se connecter en admin:
+  - Username = string
+  - Password = string
