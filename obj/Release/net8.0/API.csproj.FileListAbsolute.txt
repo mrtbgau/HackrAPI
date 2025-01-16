@@ -263,3 +263,4 @@ C:\Users\mrtbg\OneDrive\Documents\DEV\COURS\MBA\API\obj\Release\net8.0\API.genru
 C:\Users\mrtbg\OneDrive\Documents\DEV\COURS\MBA\API\obj\Release\net8.0\ref\API.dll
 C:\Users\mrtbg\OneDrive\Documents\DEV\COURS\MBA\API\bin\Release\net8.0\global.json
 C:\Users\mrtbg\OneDrive\Documents\DEV\COURS\MBA\API\bin\Release\net8.0\System.Formats.Asn1.dll
+C:\Users\mrtbg\OneDrive\Documents\DEV\COURS\MBA\API\bin\Release\net8.0\Bogus.dll

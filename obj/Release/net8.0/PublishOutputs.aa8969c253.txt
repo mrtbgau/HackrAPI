@@ -7,6 +7,7 @@ C:\Users\mrtbg\OneDrive\Documents\DEV\COURS\MBA\API\bin\Release\net8.0\publish\A
 C:\Users\mrtbg\OneDrive\Documents\DEV\COURS\MBA\API\bin\Release\net8.0\publish\API.pdb
 C:\Users\mrtbg\OneDrive\Documents\DEV\COURS\MBA\API\bin\Release\net8.0\publish\Azure.Core.dll
 C:\Users\mrtbg\OneDrive\Documents\DEV\COURS\MBA\API\bin\Release\net8.0\publish\Azure.Identity.dll
+C:\Users\mrtbg\OneDrive\Documents\DEV\COURS\MBA\API\bin\Release\net8.0\publish\Bogus.dll
 C:\Users\mrtbg\OneDrive\Documents\DEV\COURS\MBA\API\bin\Release\net8.0\publish\Humanizer.dll
 C:\Users\mrtbg\OneDrive\Documents\DEV\COURS\MBA\API\bin\Release\net8.0\publish\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\mrtbg\OneDrive\Documents\DEV\COURS\MBA\API\bin\Release\net8.0\publish\Microsoft.AspNetCore.Razor.Language.dll
