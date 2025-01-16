@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using API.Services.Logs;
+using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.Net.Sockets;
 
@@ -6,8 +7,10 @@ namespace API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class DDOSController : Controller
+    public class DDOSController(ILogService logService) : Controller
     {
+        private readonly ILogService _logService = logService;
+
         [HttpPost("ddos")]
         public IActionResult Index([FromQuery] string ip, [FromQuery] int port)
         {
@@ -24,6 +27,8 @@ namespace API.Controllers
                     return StatusCode(500, new { Error = ex.Message });
                 }
             }
+
+            _logService.LogAction(4, $" a utilisé une ddos sur {ip}:{port}");
 
             return Ok();
         }

@@ -1,17 +1,23 @@
-﻿using API.Services.Password;
+﻿using API.Services.Logs;
+using API.Services.Password;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class PasswordController(IPasswordService passwordService) : Controller
+    public class PasswordController(IPasswordService passwordService, ILogService logService) : Controller
     {
         private readonly IPasswordService _passwordService = passwordService;
+        private readonly ILogService _logService = logService;
+
         [HttpGet("generate-password")]
         public IActionResult GeneratePassword()
         {
             var securePassword = _passwordService.GenerateSecurePassword();
+
+            _logService.LogAction(4, " a généré un mot de passe");
+
             return Ok(securePassword);
         }
 
@@ -22,6 +28,8 @@ namespace API.Controllers
                 return BadRequest(new { Message = "Le mot de passe est requis." });
 
             var isWeak = await _passwordService.IsWeakPasswordAsync(password);
+
+            _logService.LogAction(4, $" a checké le mot de passe {password}");
 
             return Ok(new
             {

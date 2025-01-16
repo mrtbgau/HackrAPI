@@ -20,6 +20,8 @@ namespace API.Controllers
 
             var exists = await _mailService.VerifyEmailExistenceAsync(email);
 
+            _logService.LogAction(4, $"a vérifié le mail {email}");
+
             return exists ? Ok($"Le mail {email} existe.") : Ok($"Le mail {email} n'existe pas");
         }
 
@@ -47,6 +49,8 @@ namespace API.Controllers
                 {
                     smtp.Send(mail);
                 }
+
+                _logService.LogAction(4, $"a spammé le mail {email}");
 
                 return Ok();
             }
